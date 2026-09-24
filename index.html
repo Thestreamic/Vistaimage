@@ -409,9 +409,38 @@
       <a class="btn-secondary js-win-download" href="https://github.com/Thestreamic/VistaImageStudio/releases" target="_blank" rel="noopener">Windows app — coming soon</a>
     </div>
     <div class="hero-visual">
-      <video autoplay muted loop playsinline preload="auto" aria-label="Vista Image Studio removing a photo background">
+      <video id="heroVideo" autoplay muted playsinline preload="auto" aria-label="Vista Image Studio removing a photo background">
         <source src="media/hero.mp4" type="video/mp4">
       </video>
+      <script>
+        (function() {
+          var video = document.getElementById('heroVideo');
+          if (!video) return;
+          var key = 'vista-hero-seen';
+          var seen = false;
+          try { seen = localStorage.getItem(key) === '1'; } catch (e) {}
+          function holdLastFrame() {
+            if (!isFinite(video.duration) || video.duration <= 0) return;
+            var end = Math.max(0, video.duration - 0.04);
+            if (Math.abs(video.currentTime - end) > 0.01) video.currentTime = end;
+            video.pause();
+          }
+          if (seen) {
+            video.autoplay = false;
+            video.removeAttribute('autoplay');
+            video.style.visibility = 'hidden';
+            video.addEventListener('seeked', function() { video.style.visibility = ''; }, { once: true });
+            video.addEventListener('loadedmetadata', holdLastFrame);
+            if (video.readyState >= 1) holdLastFrame();
+            setTimeout(function() { video.style.visibility = ''; }, 1200);
+            return;
+          }
+          video.addEventListener('ended', function() {
+            holdLastFrame();
+            try { localStorage.setItem(key, '1'); } catch (e) {}
+          });
+        })();
+      </script>
     </div>
   </div>
 </header>
