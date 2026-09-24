@@ -3,16 +3,9 @@
 Public site for Vista Image Studio. The editor itself stays at
 [vistaimagestudio.thestreamic.in](https://vistaimagestudio.thestreamic.in).
 
-Until `vistaimage.thestreamic.in` is pointed at GitHub in Cloudflare, this
-repo publishes to GitHub Pages:
-
-https://thestreamic.github.io/Vistaimage/
-
-`CNAME` is intentionally not in this repo. Adding it before the DNS record
-exists makes GitHub redirect the Pages URL to a domain that does not resolve.
-When Cloudflare is ready, copy `CNAME.example` to `CNAME`, set the canonical
-and `og:url` in `index.html` to `https://vistaimage.thestreamic.in`, and add a
-CNAME record for `vistaimage` pointing at `thestreamic.github.io`.
+The public site is [vistaimage.thestreamic.in](https://vistaimage.thestreamic.in).
+`CNAME` is in the repo root so GitHub Pages keeps that custom domain on every
+deploy. DNS for `vistaimage` should be a CNAME to `thestreamic.github.io`.
 
 ## What is wired
 
@@ -26,9 +19,7 @@ CNAME record for `vistaimage` pointing at `thestreamic.github.io`.
 ## Files
 
 - `index.html` — the whole page. CSS, script, screenshots, and clips are inlined.
-- `media/` — the original images and clips, kept here so a later edit can swap
-  a file without hunting through the Pictures folder. The live page does not
-  request them.
+- `media/` — hero clip, Optimize before/after stills, and the original shots.
 - `.nojekyll` — serve the files as-is.
 - `.github/workflows/pages.yml` — publish the repository root on every push to `main`.
 
@@ -36,4 +27,4 @@ CNAME record for `vistaimage` pointing at `thestreamic.github.io`.
 
 1. Push `main`.
 2. In the repo, open Settings → Pages and set Source to GitHub Actions if it is not already.
-3. The first run publishes https://thestreamic.github.io/Vistaimage/
+3. The site is published at https://vistaimage.thestreamic.in/
