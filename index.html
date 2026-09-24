@@ -204,6 +204,8 @@
 
   /* FEATURE STORY BLOCK (alternating) */
   .feature-block { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; padding: 56px 0; }
+  .feature-block.optimize { grid-template-columns: 0.77fr 1.23fr; }
+  .feature-block.optimize .feature-media img { height: auto; }
   .feature-block.reverse .feature-media { order: 2; }
   .feature-block.reverse .feature-text { order: 1; }
   .feature-text .eyebrow { margin-bottom: 14px; }
@@ -307,7 +309,7 @@
 
   @media (max-width: 860px) {
     .navlinks { display: none; }
-    .feature-block, .feature-block.reverse { grid-template-columns: 1fr; gap: 32px; }
+    .feature-block, .feature-block.reverse, .feature-block.optimize { grid-template-columns: 1fr; gap: 32px; }
     .feature-block.reverse .feature-media, .feature-block.reverse .feature-text { order: unset; }
     .tools-grid { grid-template-columns: repeat(2, 1fr); }
     .export-grid { grid-template-columns: repeat(2, 1fr); }
@@ -393,7 +395,7 @@
       <p>Every AI tool in Vista runs directly on your machine's hardware. That means your photos are never uploaded anywhere to get the magic — and there's no waiting on a server queue.</p>
     </div>
 
-    <div class="feature-block">
+    <div class="feature-block optimize">
       <div class="feature-text">
         <span class="eyebrow">One click</span>
         <h3>Optimize Image</h3>
