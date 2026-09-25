@@ -1,4 +1,4 @@
-﻿# Vista Image Studio — marketing site
+# Vista Image Studio — marketing site
 
 Public site for Vista Image Studio. The editor itself stays at
 [vistaimagestudio.thestreamic.in](https://vistaimagestudio.thestreamic.in).
