@@ -322,6 +322,17 @@
   }
   .export-card .ratio-shape { border: 2px solid var(--accent); border-radius: 4px; opacity: 0.85; }
   .export-card span { font-size: 13px; font-weight: 600; color: var(--ink-soft); }
+  .upcoming { display: flex; justify-content: center; margin-top: 28px; }
+  .upcoming-card {
+    display: flex; align-items: center; gap: 16px; width: min(520px, 100%);
+    padding: 16px 18px; border-radius: 16px; border: 1px dashed var(--line-strong); background: var(--paper);
+  }
+  .soon-pill {
+    flex-shrink: 0; font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 6px 10px; border-radius: 100px; background: var(--ink); color: var(--paper);
+  }
+  .upcoming-card h3 { margin: 0 0 4px; font-size: 18px; }
+  .upcoming-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.45; }
 
   /* PRIVACY — fixed dark surface so light theme text never lands on a light card */
   .privacy-panel {
@@ -455,6 +466,7 @@
       <a href="#edit">Editing</a>
       <a href="#collage">Collages</a>
       <a href="#export">Export</a>
+      <a href="#upcoming">Music</a>
       <a href="#privacy">Privacy</a>
     </div>
     <div class="nav-right">
@@ -723,6 +735,15 @@
       <div class="export-card"><div class="ratio-shape" style="width:32px;height:48px;"></div><span>Pinterest</span></div>
     </div>
     <p style="text-align:center; margin-top:28px; color:var(--muted); font-size:15px;">Plus PNG, JPEG and WebP export, carousel splitting, and print-ready sizing. MP4 export is available in the Windows app.</p>
+    <div class="upcoming" id="upcoming">
+      <article class="upcoming-card">
+        <span class="soon-pill">Soon</span>
+        <div>
+          <h3>Music</h3>
+          <p>Upcoming feature. A soundtrack for Make video is not in the app yet.</p>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -841,6 +862,7 @@
           <a href="#ai">Local AI suite</a>
           <a href="#edit">Editing tools</a>
           <a href="#export">Export pack</a>
+          <a href="#upcoming">Music — soon</a>
           <a href="guide/index.html">User guide</a>
           <a href="https://vistaimagestudio.thestreamic.in" target="_blank" rel="noopener">Open the app</a>
           <a class="js-win-download" href="https://github.com/Thestreamic/VistaImageStudio/releases" target="_blank" rel="noopener">Windows app — coming soon</a>
