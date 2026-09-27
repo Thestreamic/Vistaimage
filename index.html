@@ -539,28 +539,28 @@
         (function() {
           var video = document.getElementById('heroVideo');
           if (!video) return;
-          var key = 'vista-hero-seen';
-          var seen = false;
-          try { seen = localStorage.getItem(key) === '1'; } catch (e) {}
+          var freezeMs = 3000;
+          var restartTimer = null;
           function holdLastFrame() {
             if (!isFinite(video.duration) || video.duration <= 0) return;
             var end = Math.max(0, video.duration - 0.04);
-            if (Math.abs(video.currentTime - end) > 0.01) video.currentTime = end;
+            try {
+              if (Math.abs(video.currentTime - end) > 0.01) video.currentTime = end;
+            } catch (e) {}
             video.pause();
           }
-          if (seen) {
-            video.autoplay = false;
-            video.removeAttribute('autoplay');
-            video.style.visibility = 'hidden';
-            video.addEventListener('seeked', function() { video.style.visibility = ''; }, { once: true });
-            video.addEventListener('loadedmetadata', holdLastFrame);
-            if (video.readyState >= 1) holdLastFrame();
-            setTimeout(function() { video.style.visibility = ''; }, 1200);
-            return;
+          function restart() {
+            restartTimer = null;
+            try { video.currentTime = 0; } catch (e) {}
+            var playPromise = video.play();
+            if (playPromise && typeof playPromise.catch === 'function') {
+              playPromise.catch(function() {});
+            }
           }
           video.addEventListener('ended', function() {
             holdLastFrame();
-            try { localStorage.setItem(key, '1'); } catch (e) {}
+            if (restartTimer) clearTimeout(restartTimer);
+            restartTimer = setTimeout(restart, freezeMs);
           });
         })();
       </script>
